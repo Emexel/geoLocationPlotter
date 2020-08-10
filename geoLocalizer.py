@@ -1,16 +1,20 @@
 # %% Geo Localization Plotter v1.1
+
+import matplotlib
+matplotlib.use('QT4Agg')
 from geopy.geocoders import Nominatim
 import pandas as pd
 import numpy as np
-from mpl_toolkits.basemap import Basemap
+
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
-from disvarmin import *
+from mapFunctions import *
 
 # %%
 geolocator = Nominatim(user_agent="usrapp")
 
-locDic = {'City': ['Leonessa, PZ', 'Portopalo, SR', 'Messina, ME, IT', 'Barletta, BAT', 'Ischia, NA', 'San Fele, PZ', 'Caltavuturo, PA', 'Siracusa, SR', 'Santeramo in Colle, BA', 'Augusta, SR', 'Sava, TA', 'Torino, TO', 'Avigliano, PZ']}
+# locDic = {'City': ['Leonessa, PZ', 'Portopalo, SR', 'Messina, ME, IT', 'Barletta, BAT', 'Ischia, NA', 'San Fele, PZ', 'Caltavuturo, PA', 'Siracusa, SR', 'Santeramo in Colle, BA', 'Augusta, SR', 'Sava, TA', 'Torino, TO', 'Avigliano, PZ']}
+locDic = {'City': ['Rome', 'Ushuaia', 'Attu Island, Alaska', ' Caroline Island, Kiribati']}
 latitude = []
 longitude = []
 
@@ -39,33 +43,25 @@ midPt = [df["Latitude"].mean(), df["Longitude"].mean()]
 
 
 # %% 
-fig,ax = plt.subplots(figsize=(8*1.5,8*1.5))
+fig,ax = plt.subplots()# plt.subplots(figsize=(8,8))
+fig.tight_layout()
 
-m = Basemap(resolution='h', projection='merc', 
-            llcrnrlat=35, urcrnrlat=47, llcrnrlon=5, urcrnrlon=20)
 
-m.drawcoastlines()
-parallels = np.arange(35.,47.,1)
-meridians = np.arange(5.,20.01,1)
-m.fillcontinents (color='lightgray', lake_color='lightblue')
-#parallels = np.arange(35.,45.,1)
-m.drawparallels(parallels, labels=[True, True, False, False])
-#meridians = np.arange(10.,20.01,1)
-m.drawmeridians(meridians, labels=[False, False, True, True])
-m.drawmapboundary(fill_color='lightblue')
-m.drawcountries()
-m.drawstates()
+lats = df['Latitude'].to_numpy()
+longs = df['Longitude'].to_numpy()
+
+m = drawMap(lats, longs, 'l')
+
+longM, latM = m(longs, lats)
 
 # m.drawcounties()
 # x, y = m(*zip(*[hawaii, austin, washington, chicago, losangeles]))
 
-lats = df['Latitude'].to_numpy()
-longs = df['Longitude'].to_numpy()
-longM, latM = m(longs, lats)
+
 
 longMinVar, latMinVar = disvarmin(lats, longs)
 xx, yy = m(longMinVar, latMinVar)
-plt.plot(xx, yy, marker='d', markersize=14, color='r')
+plt.plot(xx, yy, marker='*', markersize=14, color='r')
 plt.text(xx, yy+2e4, 'Min. Dist.', color='r')
 
 colors = cm.jet(np.linspace(0, 1, len(longM)))
@@ -93,6 +89,12 @@ for xpt, ypt, c, label in zip(longM, latM, colors, labels):
 saveFig = False
 if saveFig:
     plt.savefig('mappa', bbox_inches='tight')
+
+# plt.switch_backend('Qt4Agg')
+
+figManager = plt.get_current_fig_manager()
+figManager.window.showMaximized()
+
 plt.show()
 plt.rcParams.update({'font.size': 16})
 
