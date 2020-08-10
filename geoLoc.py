@@ -1,4 +1,4 @@
-# %%
+# %% Geo Localization Plotter v1.0
 from geopy.geocoders import Nominatim
 import pandas as pd
 import numpy as np
