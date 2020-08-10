@@ -1,4 +1,4 @@
-# %% Geo Localization Plotter v1.0
+# %% Geo Localization Plotter v1.1
 from geopy.geocoders import Nominatim
 import pandas as pd
 import numpy as np
@@ -56,7 +56,7 @@ m.drawmapboundary(fill_color='lightblue')
 m.drawcountries()
 m.drawstates()
 
-# m.drawcounties()
+# m.drawcounties()
 # x, y = m(*zip(*[hawaii, austin, washington, chicago, losangeles]))
 
 lats = df['Latitude'].to_numpy()

@@ -2,6 +2,7 @@ import numpy as np
 
 def disvarmin(lats, longs):
 
+    min_lat, max_lat = np.min(lats), np.max(lats)
     parallels = np.arange(35.,42.,0.03)
     meridians = np.arange(10.,20.,0.03)
 
