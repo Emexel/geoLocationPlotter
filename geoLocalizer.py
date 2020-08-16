@@ -51,7 +51,7 @@ fig.tight_layout()
 lats = df['Latitude'].to_numpy()
 longs = df['Longitude'].to_numpy()
 
-m = drawMap(lats, longs, 'l')
+m = draw_Map(lats, longs, 'l')
 
 longM, latM = m(longs, lats)
 
@@ -60,7 +60,7 @@ longM, latM = m(longs, lats)
 
 
 
-longMinVar, latMinVar = disvarmin(lats, longs)
+longMinVar, latMinVar = dis_var_min(lats, longs)
 xx, yy = m(longMinVar, latMinVar)
 plt.plot(xx, yy, marker='*', markersize=14, color='r')
 plt.text(xx, yy+2e4, 'Min. Dist.', color='r')

@@ -1,7 +1,7 @@
 import numpy as np
 from mpl_toolkits.basemap import Basemap
 
-def disvarmin(lats, longs):
+def dis_var_min(lats, longs):
 
     min_lat, max_lat = np.min(lats), np.max(lats)
     min_long, max_long = np.min(longs), np.max(longs)
@@ -30,7 +30,7 @@ def disvarmin(lats, longs):
     return(longMin, latMin)
 
 
-def drawMap(lats, longs, quality='c'):
+def draw_Map(lats, longs, quality='c'):
 
     min_lat, max_lat = np.min(lats), np.max(lats)
     min_long, max_long = np.min(longs), np.max(longs)
@@ -72,14 +72,14 @@ def drawMap(lats, longs, quality='c'):
     # print('Latitude extremes:', min_lat, max_lat)
     # print('Long extremes:', min_long, max_long)
 
-    m = Basemap(resolution=quality, projection='merc', 
+    map_obj = Basemap(resolution=quality, projection='merc', 
             llcrnrlat=plot_limits[0], urcrnrlat=plot_limits[1],
             llcrnrlon=plot_limits[2], urcrnrlon=plot_limits[3])
 
-    m.drawcoastlines()
-    m.fillcontinents (color='lightgray', lake_color='lightblue')
-    m.drawmapboundary(fill_color='lightblue')
-    m.drawcountries()
+    map_obj.drawcoastlines()
+    map_obj.fillcontinents (color='lightgray', lake_color='lightblue')
+    map_obj.drawmapboundary(fill_color='lightblue')
+    map_obj.drawcountries()
     # m.drawstates()
 
     parallels = np.round(np.linspace(np.round(plot_limits[0]), np.round(plot_limits[1]), subdivisions))
@@ -89,7 +89,7 @@ def drawMap(lats, longs, quality='c'):
     # np.linspace(min_lat, max_lat, subdivisions)
     # np.linspace(min_long, max_long, subdivisions)
     
-    m.drawparallels(parallels, labels=[True, True, False, False])
-    m.drawmeridians(meridians, labels=[False, False, True, True])
+    map_obj.drawparallels(parallels, labels=[True, True, False, False])
+    map_obj.drawmeridians(meridians, labels=[False, False, True, True])
 
-    return m
+    return map_obj
