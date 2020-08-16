@@ -69,8 +69,8 @@ def drawMap(lats, longs, quality='c'):
     
     print(plot_limits)
 
-    print('Latitude extremes:', min_lat, max_lat)
-    print('Long extremes:', min_long, max_long)
+    # print('Latitude extremes:', min_lat, max_lat)
+    # print('Long extremes:', min_long, max_long)
 
     m = Basemap(resolution=quality, projection='merc', 
             llcrnrlat=plot_limits[0], urcrnrlat=plot_limits[1],
