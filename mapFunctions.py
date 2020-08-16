@@ -65,7 +65,7 @@ def drawMap(lats, longs, quality='c'):
     if plot_limits[2] < -180:
         plot_limits[2] = -180
     if plot_limits[3] > 180:
-        plot_limits[3]= 180
+        plot_limits[3] = 180
     
     print(plot_limits)
 

@@ -14,7 +14,8 @@ from mapFunctions import *
 geolocator = Nominatim(user_agent="usrapp")
 
 # locDic = {'City': ['Leonessa, PZ', 'Portopalo, SR', 'Messina, ME, IT', 'Barletta, BAT', 'Ischia, NA', 'San Fele, PZ', 'Caltavuturo, PA', 'Siracusa, SR', 'Santeramo in Colle, BA', 'Augusta, SR', 'Sava, TA', 'Torino, TO', 'Avigliano, PZ']}
-locDic = {'City': ['Rome', 'Ushuaia', 'Attu Island, Alaska', ' Caroline Island, Kiribati']}
+# locDic = {'City': ['Rome', 'Ushuaia', 'Attu Island, Alaska', ' Caroline Island, Kiribati']}
+locDic = {'City': ['Kolkata', 'Beirut', 'Bari', 'Trondheim']}
 latitude = []
 longitude = []
 
