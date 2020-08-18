@@ -30,7 +30,7 @@ def dis_var_min(lats, longs):
     return(longMin, latMin)
 
 
-def draw_Map(lats, longs, quality='c'):
+def draw_map(lats, longs, quality='c'):
 
     min_lat, max_lat = np.min(lats), np.max(lats)
     min_long, max_long = np.min(longs), np.max(longs)

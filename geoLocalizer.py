@@ -51,7 +51,7 @@ fig.tight_layout()
 lats = df['Latitude'].to_numpy()
 longs = df['Longitude'].to_numpy()
 
-m = draw_Map(lats, longs, 'l')
+m = draw_map(lats, longs, 'l')
 
 longM, latM = m(longs, lats)
 
